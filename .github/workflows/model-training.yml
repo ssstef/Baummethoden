@@ -1,0 +1,22 @@
+# Github Action
+
+name: train-model
+on: [pull_request]
+jobs: 
+    train-model:
+      runs-on: ubuntu-latest
+      steps: 
+        - uses: actions/checkout@v2
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.9'
+        - name: Install dependencies
+          run: pip install -r requirements1.txt
+        - name: Train model
+          run: python train.py
+        - name: Active production artifacts
+          uses: actions/upload-artifact@v2
+          with: 
+            name: baummethoden.pickle
+            path: models/baummethoden.pickle
