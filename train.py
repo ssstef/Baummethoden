@@ -16,11 +16,12 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-import build_features
-from build_features import *
-direct = check_output('pwd') # ?
-print(direct)
-sys.path.append('../../src/visualization/')
+#import build_features
+#from build_features import *
+#direct = check_output('pwd') # ?
+#print(direct)
+#sys.path.append('../../src/visualization/')
+
 
 
 # import visualize
@@ -35,7 +36,8 @@ from sklearn import preprocessing
 attribute_names = []  # raussuchen!
 
 #Read data
-df = pd.read_excel('divorce.xlsx')
+#df = pd.read_excel('divorce.xlsx')
+df = pd.read_excel('data_banknote_authentication.csv')
 #data = pd.read_csv('../../../+current_dir+'/data/processed/dataset.csv, names = attribute_names)
 # elegantere Methode verwenden.
 
@@ -75,17 +77,13 @@ classifier_dt.fit(X_train, y_train)
 classifier_dt.feature_importances_
 
 # graphical output
-Baum_tree(classifier_dt, attribute_names)
+#Baum_tree(classifier_dt, attribute_names)
 
-# save in Pickle file
-path_start = os.getcwd()
-pathr = os.path.dirnames(os.getcwd())+'/../models'
-os.chdir(pathr)
-file_name = "classification_divorce_pickle"
-fill = open(file_name, 'wb')
-pi.dump(classifier_dt, fill)
-fill.close()
+#Save in file
+clf_file = "classifier_object.pickle"
+f = open(clf_file, 'wb')
+pi.dump(classifier_dt, f)
+f.close()
 
-#Change to the start working directory
-os.chdir(path_start)
+
 
